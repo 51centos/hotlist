@@ -33,8 +33,22 @@ class HotList extends Component {
               <List.Item.Meta
                 title={
                   <div>
-                    <span>{`${index + 1}.`}&nbsp;</span>
-                    <a href={item.url} target="_blank">{item.title}</a>
+                    <span>
+                      {`${index + 1}.`}
+                      &nbsp;
+                    </span>
+                    <a
+                      target="_blank"
+                      onClick={() =>
+                        window.open(
+                          `${
+                            window.location.origin
+                          }/link?target=${encodeURIComponent(item.url)}`
+                        )
+                      }
+                    >
+                      {item.title}
+                    </a>
                   </div>
                 }
                 description={item.summary}

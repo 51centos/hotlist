@@ -24,11 +24,13 @@ class App extends Component {
   }
 
   handleSetSite = siteId => {
-    const { selectSiteId, fetchHotList } = this.props;
+    const { selectSiteId, fetchHotList, history } = this.props;
 
     selectSiteId(siteId);
     setSiteId(siteId);
     fetchHotList(siteId);
+
+    history.push(`?site_id=${siteId}`);
   };
 
   render() {
@@ -73,4 +75,9 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
