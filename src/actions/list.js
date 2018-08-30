@@ -14,7 +14,7 @@ export const fetchSites = () => {
       .then(response => {
         dispatch({
           type: FETCH_SITES.SUCCESS,
-          payload: response.sites
+          payload: response
         });
         return response;
       })
@@ -35,12 +35,13 @@ export const fetchHotList = siteId => {
       .then(response => {
         dispatch({
           type: FETCH_HOT_LIST.SUCCESS,
-          payload: response.list
+          payload: response
         });
       })
-      .catch(() => {
+      .catch(error => {
         dispatch({
-          type: FETCH_HOT_LIST.ERROR
+          type: FETCH_HOT_LIST.ERROR,
+          payload: error
         });
       });
   };

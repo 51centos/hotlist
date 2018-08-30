@@ -14,9 +14,9 @@ class App extends Component {
     const { siteId, fetchSites, fetchHotList, selectSiteId } = this.props;
 
     fetchSites().then(resp => {
-      if (!siteId && resp.sites) {
-        selectSiteId(resp.sites[0].id);
-        fetchHotList(resp.sites[0].id);
+      if (!siteId && resp) {
+        selectSiteId(resp[0].id);
+        fetchHotList(resp[0].id);
       } else {
         fetchHotList(siteId);
       }

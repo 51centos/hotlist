@@ -18,12 +18,13 @@ function callApi(endpoint, request) {
   const url = API_ROOT + endpoint;
 
   return fetch(url, requestWithHeaders)
-    .then(response => response.json().then(body => ({ response, body })))
-    .then(({ response, body }) => {
-      if (!response.ok) {
-        if (body && body.error) return Promise.reject(body.error);
+    .then(response => response.json())
+    .then(body => {
+      if (body.code === 0) {
+        return body.data;
+      } else {
+        throw body.message;
       }
-      return body;
     });
 }
 
@@ -32,6 +33,6 @@ export default {
     return callApi('/sites');
   },
   fetchHotList(siteId) {
-    return callApi(`/sites/${siteId}/hot`);
+    return callApi(`/sites/${siteId}/news`);
   }
 };

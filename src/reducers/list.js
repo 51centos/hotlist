@@ -5,7 +5,8 @@ const initialState = {
   isfetchSitesPending: false,
   sites: [],
   isfetchHotListPending: false,
-  hotList: []
+  hotList: [],
+  error: ''
 };
 
 export const listReducer = (state = initialState, action = {}) => {
@@ -45,7 +46,8 @@ export const listReducer = (state = initialState, action = {}) => {
     case FETCH_HOT_LIST.ERROR:
       return {
         ...state,
-        isfetchHotListPending: false
+        isfetchHotListPending: false,
+        error: action.payload
       };
     default:
       return state;
